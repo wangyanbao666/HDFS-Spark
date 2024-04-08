@@ -40,6 +40,10 @@ df_max_min_rating = df.join(
     "inner"
 )
 
+df_max_min_rating = df_max_min_rating.select(
+    "_c0", "Name", "City", "Cuisine Style", "Ranking", "Rating", "Price Range", "Number of Reviews", "Reviews", "URL_TA", "ID_TA"
+)
+
 collect = df_max_min_rating.collect()
 print(collect[:6])
 output_path = f"hdfs://{hdfs_nn}:9000/assignment2/output/question2/"
