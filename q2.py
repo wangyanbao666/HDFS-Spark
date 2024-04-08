@@ -15,10 +15,10 @@ schema = StructType([
     StructField("Name", StringType(), True),
     StructField("City", StringType(), True),
     StructField("Cuisine Style", StringType(), True),
-    StructField("Ranking", StringType(), True),  # Consider IntegerType if appropriate
-    StructField("Rating", FloatType(), True),   # Consider FloatType or DoubleType if appropriate
+    StructField("Ranking", StringType(), True), 
+    StructField("Rating", FloatType(), True),  
     StructField("Price Range", StringType(), True),
-    StructField("Number of Reviews", StringType(), True),  # Consider IntegerType if appropriate
+    StructField("Number of Reviews", StringType(), True), 
     StructField("Reviews", StringType(), True),
     StructField("URL_TA", StringType(), True),
     StructField("ID_TA", StringType(), True)
@@ -41,10 +41,10 @@ df_max_min_rating = df.join(
 )
 
 df_max_min_rating = df_max_min_rating.select(
-    "Name", "City", "Cuisine Style", "Ranking", "Rating", "Price Range", "Number of Reviews", "Reviews", "URL_TA", "ID_TA"
+    "_c0", "Name", "City", "Cuisine Style", "Ranking", "Rating", "Price Range", "Number of Reviews", "Reviews", "URL_TA", "ID_TA"
 )
 
-collect = df_max_min_rating.collect()
-print(collect[:6])
+# collect = df_max_min_rating.collect()
+# print(collect[:6])
 output_path = f"hdfs://{hdfs_nn}:9000/assignment2/output/question2/"
 df_max_min_rating.write.mode("overwrite").option("header", "true").csv(output_path)

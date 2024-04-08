@@ -15,10 +15,10 @@ schema = StructType([
     StructField("Name", StringType(), True),
     StructField("City", StringType(), True),
     StructField("Cuisine Style", StringType(), True),
-    StructField("Ranking", StringType(), True),  # Consider IntegerType if appropriate
-    StructField("Rating", FloatType(), True),   # Consider FloatType or DoubleType if appropriate
+    StructField("Ranking", StringType(), True), 
+    StructField("Rating", FloatType(), True),  
     StructField("Price Range", StringType(), True),
-    StructField("Number of Reviews", StringType(), True),  # Consider IntegerType if appropriate
+    StructField("Number of Reviews", StringType(), True), 
     StructField("Reviews", StringType(), True),
     StructField("URL_TA", StringType(), True),
     StructField("ID_TA", StringType(), True)

@@ -15,10 +15,10 @@ schema = StructType([
     StructField("Name", StringType(), True),
     StructField("City", StringType(), True),
     StructField("Cuisine Style", StringType(), True),
-    StructField("Ranking", StringType(), True),  # Consider IntegerType if appropriate
-    StructField("Rating", FloatType(), True),   # Consider FloatType or DoubleType if appropriate
+    StructField("Ranking", StringType(), True), 
+    StructField("Rating", FloatType(), True),  
     StructField("Price Range", StringType(), True),
-    StructField("Number of Reviews", StringType(), True),  # Consider IntegerType if appropriate
+    StructField("Number of Reviews", StringType(), True), 
     StructField("Reviews", StringType(), True),
     StructField("URL_TA", StringType(), True),
     StructField("ID_TA", StringType(), True)
@@ -31,7 +31,7 @@ bottoms = df_city_avg.orderBy(col("AverageRating").asc()).limit(3).withColumn("R
 
 
 combined = tops.union(bottoms).orderBy(col("AverageRating").desc())
-collect = combined.collect()
-print(collect[:6])
+# collect = combined.collect()
+# print(collect[:6])
 output_path = f"hdfs://{hdfs_nn}:9000/assignment2/output/question3/"
 combined.write.mode("overwrite").option("header", "true").csv(output_path)
