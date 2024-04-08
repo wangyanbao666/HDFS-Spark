@@ -33,5 +33,5 @@ bottoms = df_city_avg.orderBy(col("AverageRating").asc()).limit(3).withColumn("R
 combined = tops.union(bottoms).orderBy(col("AverageRating").desc())
 collect = combined.collect()
 print(collect[:6])
-output_path = f"hdfs://{hdfs_nn}:9000/assignment2/output/question2/"
+output_path = f"hdfs://{hdfs_nn}:9000/assignment2/output/question3/"
 combined.write.mode("overwrite").option("header", "true").csv(output_path)

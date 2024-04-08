@@ -28,7 +28,7 @@ filtered_df = df.filter(
         (col("Price Range") != "") & 
         (col("Price Range").isNotNull())
     ).groupBy(
-        col("Price Range"), col("City")
+        col("Price Range").alias("PR"), col("City").alias("C")
     ).agg(
         max("Rating").alias("Best Rating"),
         min("Rating").alias("Worst Rating")
@@ -36,12 +36,12 @@ filtered_df = df.filter(
 
 df_max_min_rating = df.join(
     filtered_df,
-    (df.City == filtered_df.City) & (df["Price Range"] == filtered_df["Price Range"]) & ((df.Rating == filtered_df["Best Rating"] | df.Rating == filtered_df["Worst Rating"])),
+    (df.City == filtered_df.C) & (df["Price Range"] == filtered_df.PR) & ((df.Rating == filtered_df["Best Rating"]) | (df.Rating == filtered_df["Worst Rating"])),
     "inner"
 )
 
 df_max_min_rating = df_max_min_rating.select(
-    "_c0", "Name", "City", "Cuisine Style", "Ranking", "Rating", "Price Range", "Number of Reviews", "Reviews", "URL_TA", "ID_TA"
+    "Name", "City", "Cuisine Style", "Ranking", "Rating", "Price Range", "Number of Reviews", "Reviews", "URL_TA", "ID_TA"
 )
 
 collect = df_max_min_rating.collect()
